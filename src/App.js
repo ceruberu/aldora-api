@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { SignedOut, SignedIn } from "./router";
 
 // import {
@@ -15,7 +15,6 @@ import { SignedOut, SignedIn } from "./router";
 // } from 'react-native';
 // import { StackNavigator } from 'react-navigation';
 
-
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' +
 //     'Cmd+D or shake for dev menu',
@@ -24,16 +23,34 @@ import { SignedOut, SignedIn } from "./router";
 // });
 
 export default class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      isManager: true 
+      isManager: true
     };
+    this.changeUserType = this.changeUserType.bind(this);
   }
 
+  changeUserType = isManager => {
+    if (isManager !== this.state.isManager){
+      this.setState({
+        isManager
+      })
+    }
+  };
+
   render() {
+    console.log("STATE:: ", this.state);
     const { isManager } = this.state;
-    return <SignedOut isManager={isManager} />;
+    console.log("ISMANAGER:: ", this.changeUserType);
+    return (
+      <SignedOut
+        screenProps={{
+          isManager,
+          changeUserType: isManager => this.changeUserType(isManager)
+        }}
+      />
+    );
   }
 }
 
