@@ -20,7 +20,7 @@ export const SignedOut = StackNavigator({
 })
 
 export const SignedIn = TabNavigator({
-  SignUp: {
+  Home: {
     screen: Home,
     navigationOptions: {
       title: 'Home'

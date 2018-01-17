@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 export default ({ navigation, screenProps }) => {
+  const { navigate } = navigation;
   const { isManager, changeUserType } = screenProps;
   return (
     <View style={styles.screen}>
@@ -33,6 +34,23 @@ export default ({ navigation, screenProps }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.signinContainer}>
+          <TextInput
+            style={styles.emailInput}
+            placeholder="Email"
+            keyboardType="email-address"
+          />
+          <TextInput
+            style={styles.passwordInput}
+            placeholder="Password"
+            keyboardType="email-address"
+          />
+          <Button 
+            title="Sign Up"
+            onPress={() => navigate("SignUp")}
+          />
+        </View>
+        <View style={styles.socialSigninContainer}>
+          <Text style={styles.socialText} > 소셜 로그인 </Text>
         </View>
       </View>
     </View>
@@ -76,5 +94,30 @@ const styles = StyleSheet.create({
   },
   signinContainer: {
     flex: 5
+  },
+  emailInput: {
+    height: 40,
+    margin: 30,
+    padding: 5,
+    borderWidth: 1,
+    borderColor: "black"
+  },
+  passwordInput: {
+    height: 40,
+    marginBottom: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    padding: 5,
+    borderWidth: 1,
+    borderColor: "black"
+  },
+  socialSigninContainer: {
+    flex: 2,
+    borderTopWidth: 1,
+    borderTopColor: "grey",
+    alignItems: "center"
+  },
+  socialText: {
+    justifyContent: "center"
   }
 });
